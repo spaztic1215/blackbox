@@ -63,6 +63,7 @@ class OrderFraudWorkflow:
             "check_fraud_score",
             args=[order, model_version],
             start_to_close_timeout=timedelta(seconds=30),
+            result_type=FraudResult,
         )
 
         # 3. Build the complete result

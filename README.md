@@ -97,7 +97,19 @@ con.sql('SELECT COUNT(*) FROM activity_executions').show()
 "
 ```
 
-### 7. Validate Data (optional)
+### 7. Launch the Dashboard
+
+```bash
+streamlit run blackbox/dashboard/app.py
+```
+
+Opens a browser with:
+- Overview metrics (total workflows, decline rates by model version)
+- Time series chart showing the decline-rate spike with rollout phase annotations
+- Automatic spike detection
+- Date drill-down to inspect individual workflows and activity event histories
+
+### 8. Validate Data (optional)
 
 Preview order distributions and simulated decline rates without Temporal:
 
@@ -105,7 +117,7 @@ Preview order distributions and simulated decline rates without Temporal:
 python scripts/validate_data.py --count 10000
 ```
 
-### 8. Run Tests
+### 9. Run Tests
 
 ```bash
 pytest tests/ -v
@@ -119,7 +131,8 @@ blackbox/
 │   ├── activities/        # Temporal activity implementations
 │   │   └── fraud_check.py # Wraps the mock fraud API
 │   ├── agent/             # AI investigation agent (Phase 5)
-│   ├── dashboard/         # Streamlit dashboard (Phase 4)
+│   ├── dashboard/         # Streamlit dashboard
+│   │   └── app.py         # Investigation dashboard UI
 │   ├── export/            # DuckDB export
 │   │   └── duckdb_export.py # Export Temporal histories → DuckDB
 │   ├── fraud_api/         # Mock fraud scoring engine
